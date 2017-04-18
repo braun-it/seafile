@@ -1,0 +1,18 @@
+    [Unit]
+    Description=seafile
+    After=network.target mariadb.service
+
+    [Service]
+    Type=oneshot
+    RemainAfterExit=yes
+
+    #Start Server
+    ExecStart=/home/seafile/seafile-server-latest/seafile.sh start
+    ExecStart=/home/seafile/seafile-server-latest/seahub.sh start
+
+    #Stop Server
+    ExecStop=/home/seafile/seafile-server-latest/seahub.sh stop
+    ExecStop=/home/seafile/seafile-server-latest/seafile.sh stop
+
+    [Install]
+    WantedBy=multi-user.target
